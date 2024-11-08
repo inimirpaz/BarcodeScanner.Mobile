@@ -56,7 +56,7 @@ namespace BarcodeScanner.Mobile
             var previewBuilder = new Preview.Builder()
                 .SetResolutionSelector(selector);
             var preview = previewBuilder.Build();
-            preview.SetSurfaceProvider(_previewView.SurfaceProvider);
+            preview.SetSurfaceProvider(ContextCompat.GetMainExecutor(Context), _previewView.SurfaceProvider);
 
             var imageAnalyzerBuilder = new ImageAnalysis.Builder();
             // Frame by frame analyze
