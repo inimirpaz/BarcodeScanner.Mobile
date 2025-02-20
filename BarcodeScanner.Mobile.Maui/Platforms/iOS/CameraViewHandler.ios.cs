@@ -285,6 +285,10 @@ namespace BarcodeScanner.Mobile
 
         private AVCaptureDevice GetCamera(AVCaptureDevicePosition position)
         {
+            if (AVCaptureDevice.GetDefaultDevice(AVCaptureDeviceType.BuiltInWideAngleCamera, AVMediaTypes.Video, position) != null)
+            {
+                return AVCaptureDevice.GetDefaultDevice(AVCaptureDeviceType.BuiltInWideAngleCamera, AVMediaTypes.Video, position);
+            }
             if (AVCaptureDevice.GetDefaultDevice(AVCaptureDeviceType.BuiltInTripleCamera, AVMediaTypes.Video, position) != null)
             {
                 return AVCaptureDevice.GetDefaultDevice(AVCaptureDeviceType.BuiltInTripleCamera, AVMediaTypes.Video, position);
@@ -297,17 +301,17 @@ namespace BarcodeScanner.Mobile
 
             using var session = AVCaptureDeviceDiscoverySession.Create(
                                     new[] {
+                                        AVCaptureDeviceType.BuiltInWideAngleCamera,  // 1x Camera
                                         AVCaptureDeviceType.BuiltInDualCamera,
                                         AVCaptureDeviceType.BuiltInTripleCamera,
                                         AVCaptureDeviceType.BuiltInTrueDepthCamera,
                                         AVCaptureDeviceType.BuiltInDualWideCamera,
-                                        AVCaptureDeviceType.BuiltInWideAngleCamera,
                                         AVCaptureDeviceType.BuiltInUltraWideCamera,
-                                        AVCaptureDeviceType.BuiltInTelephotoCamera
+                                        AVCaptureDeviceType.BuiltInTelephotoCamera,
                                     },
                                     AVMediaTypes.Video,
                                     position);
-            
+
             return session.Devices.FirstOrDefault();
         }
     }
