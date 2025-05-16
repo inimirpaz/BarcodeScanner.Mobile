@@ -1,9 +1,6 @@
 # BarcodeScanner.Mobile
 Powerful barcode scanning library using Google MLKit API. For MAUI and Xamarin Forms. Please feel free to improve my source code.
 
-# FORK INFO
-Re-packaged with the latest Android dependencies.
-
 ## Supported versions
 - Xamarin Forms: iOS 12+ and Android (MonoAndroid13.0)
 - Maui : iOS 15.4+ and Android (android 34.0) .net 8

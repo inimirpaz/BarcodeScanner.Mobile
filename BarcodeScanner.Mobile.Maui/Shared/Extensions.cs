@@ -36,7 +36,7 @@ namespace BarcodeScanner.Mobile
                 case CaptureQuality.Medium:
                 case CaptureQuality.High:
                 case CaptureQuality.Highest:
-                    return new ResolutionStrategy(GetTargetResolution(quality), ResolutionStrategy.FallbackRuleClosestHigher);
+                    return new ResolutionStrategy(GetTargetResolution(quality), ResolutionStrategy.FallbackRuleClosestHigherThenLower);
                 default:
                     throw new ArgumentOutOfRangeException(nameof(CaptureQuality));
             }

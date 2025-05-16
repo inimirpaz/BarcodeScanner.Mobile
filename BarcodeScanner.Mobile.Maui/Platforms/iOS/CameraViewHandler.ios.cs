@@ -1,11 +1,7 @@
-﻿using System.Runtime.Intrinsics.X86;
 using AVFoundation;
 using BarcodeScanner.Mobile.Platforms.iOS;
 using CoreVideo;
 using Foundation;
-using Intents;
-using Microsoft.Maui.Controls.PlatformConfiguration;
-using UIKit;
 
 namespace BarcodeScanner.Mobile
 {
@@ -75,6 +71,7 @@ namespace BarcodeScanner.Mobile
             CaptureSession.StartRunning();
             HandleTorch();
             SetFocusMode();
+            HandleZoom();
         }
 
         public void Dispose()
@@ -285,10 +282,6 @@ namespace BarcodeScanner.Mobile
 
         private AVCaptureDevice GetCamera(AVCaptureDevicePosition position)
         {
-            if (AVCaptureDevice.GetDefaultDevice(AVCaptureDeviceType.BuiltInWideAngleCamera, AVMediaTypes.Video, position) != null)
-            {
-                return AVCaptureDevice.GetDefaultDevice(AVCaptureDeviceType.BuiltInWideAngleCamera, AVMediaTypes.Video, position);
-            }
             if (AVCaptureDevice.GetDefaultDevice(AVCaptureDeviceType.BuiltInTripleCamera, AVMediaTypes.Video, position) != null)
             {
                 return AVCaptureDevice.GetDefaultDevice(AVCaptureDeviceType.BuiltInTripleCamera, AVMediaTypes.Video, position);
@@ -301,13 +294,13 @@ namespace BarcodeScanner.Mobile
 
             using var session = AVCaptureDeviceDiscoverySession.Create(
                                     new[] {
-                                        AVCaptureDeviceType.BuiltInWideAngleCamera,  // 1x Camera
                                         AVCaptureDeviceType.BuiltInDualCamera,
                                         AVCaptureDeviceType.BuiltInTripleCamera,
                                         AVCaptureDeviceType.BuiltInTrueDepthCamera,
                                         AVCaptureDeviceType.BuiltInDualWideCamera,
+                                        AVCaptureDeviceType.BuiltInWideAngleCamera,
                                         AVCaptureDeviceType.BuiltInUltraWideCamera,
-                                        AVCaptureDeviceType.BuiltInTelephotoCamera,
+                                        AVCaptureDeviceType.BuiltInTelephotoCamera
                                     },
                                     AVMediaTypes.Video,
                                     position);
