@@ -63,6 +63,8 @@
 		<PackageReference Include="AdamE.MLKit.iOS.BarcodeScanning" Version="6.0.0" />
 		<!-- Fixes iOS build Undefined symbols for architecture arm64: "_GULOSLogBasic" issue, see: https://github.com/JimmyPun610/BarcodeScanner.Mobile/issues/260  -->
 		<PackageReference Include="AdamE.Google.iOS.GoogleUtilities" Version="8.0.2" />
+		<!-- See: https://github.com/AdamEssenmacher/GoogleApisForiOSComponents/issues/79#issuecomment-3057680081  -->
+		<PackageReference Include="AdamE.Firebase.iOS.Installations" Version="11.0.0" />
 		<BundleResource Include="Platforms\iOS\PrivacyInfo.xcprivacy" LogicalName="PrivacyInfo.xcprivacy" />
 	</ItemGroup>
 	<ItemGroup>
